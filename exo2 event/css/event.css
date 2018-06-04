@@ -1,0 +1,29 @@
+body{
+	margin: 0;
+	padding:0;
+}
+img{
+	padding:0.5em;
+	margin: 1em;
+}
+#photo-list {
+	list-style-type: none;
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	justify-content: space-around;
+	max-width: 800px;
+	width: 60%;
+}
+
+ul li:hover{
+	background-color: silver;
+}
+.selected{
+	border: 5px solid forestgreen;
+}
+#total span{
+	color:red;
+	font-style: oblique;
+	font-weight: bold;
+}

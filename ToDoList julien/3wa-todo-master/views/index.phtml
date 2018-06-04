@@ -1,0 +1,36 @@
+ <html>
+
+	<head>
+	</head>
+
+	<body>
+		<h1>Ma liste de tâche</h1>
+
+
+
+		<ul>
+		<?php
+		
+		$tasks = getTaskList();
+		
+
+		foreach ($tasks as $id => $text) {
+
+			$removeUrl = "removeTask.php?id=" . $id;
+
+			echo "<li>";
+			echo $text;
+			echo '<a href="' . $removeUrl . '">supprimer</a>' ;
+			echo "</li>";
+
+		} 
+		?>
+			
+		<h2>Ajouter une tache</h2>
+		<form action="addTask.php" method="POST">
+			<input name="task">
+			<button>ajouter la tâche</button>	
+		   
+		</form>
+	</body>
+</html>

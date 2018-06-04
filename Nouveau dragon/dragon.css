@@ -1,0 +1,14 @@
+.card-hero img{
+	width: 100px;
+	height: 100px;
+	
+}
+.card-hero{
+	border: 2px solid black;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	padding: 50px;
+}
+

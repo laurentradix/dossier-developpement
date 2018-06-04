@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<title>Jeu arena</title>
+	<link rel="stylesheet" type="text/css" href="../arena.css">
+</head>
+<body>
+<header>
+	<ul>
+		<li> <a href="http://localhost/Developpement/jeu_arena/public/index.phtml">Accueil</a></li>
+		<li> <a href="http://localhost/Developpement/jeu_arena/services/service.php">Créer un personnage</a></li>
+		<li> <a href="http://localhost/Developpement/jeu_arena/public/listpers.phtml">Liste des personnages</a></li>
+		<li> <a href="">L'arène</a></li>
+	</ul>
+</header>
+<main>
+	<?php
+
+		include'../services/service.php';
+		
+		$heros = getDataHero();
+			
+		echo "<table border='1'>";
+
+		foreach ($heros as $hero) {
+			echo "<tr>";
+			echo "<td>$hero[0]</td>";
+			echo "<td>$hero[1]</td>";
+			echo "<td>$hero[2]</td>";
+			echo "<td><img src='$hero[3]'</td>";
+			echo "</tr>";
+		}
+		echo "</table>";
+	?>
+
+</main>
+
+</body>
+</html>

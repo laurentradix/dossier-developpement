@@ -1,0 +1,9 @@
+main{
+	background-color: yellow;
+	color: black;
+	height: 30px;
+	width: 80px;
+	text-align: center;
+	padding: 1em;
+	border-radius: 20px;
+}
