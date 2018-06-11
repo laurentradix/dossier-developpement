@@ -1,0 +1,54 @@
+<?php
+include '../views/header.phtml';
+?>
+
+ <main>
+        
+        <h2><i class="fa fa-cogs"></i> Panneau d'administration</h2>
+
+	<nav>
+	    <a href="add_post.php">Rédiger un nouvel article</a>
+	</nav>
+
+	<table>
+	    <caption>Liste des articles</caption>
+	    <thead>
+	        <tr>
+	            <th>Titre</th>
+	            <th>Article</th>
+	            <th>Auteur</th>
+	            <th>Catégorie</th>
+	            <th></th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	                    <tr>
+	                <td><a href="show_post.php?id=6" target="_blank">Quentin</a></td>
+	                <td>j'aime les voitures de collections </td>
+	                <td>bob l'éponge</td>
+	                <td>voitures</td>
+	                <td>
+	                    <a class="edit" href="edit_post.php?id=6"><i class="fa fa-pencil"></i></a>
+	                    <a class="remove" href="delete_post.php?id=6"><i class="fa fa-remove"></i></a>
+	                </td>
+	            </tr>
+	                    <tr>
+	                <td><a href="show_post.php?id=4" target="_blank">dzadazd</a></td>
+	                <td>je veux voyager en voilier </td>
+	                <td>andre</td>
+	                <td>voilier</td>
+	                <td>
+	                    <a class="edit" href="edit_post.php?id=4"><i class="fa fa-pencil"></i></a>
+	                    <a class="remove" href="delete_post.php?id=4"><i class="fa fa-remove"></i></a>
+	                </td>
+	            </tr>
+	            </tbody>
+	</table>    
+</main>
+
+    
+    <footer class="blog-footer">
+        <small>Le blog des élèves de la 3W Academy</small>
+    </footer>
+</body>
+</html>
