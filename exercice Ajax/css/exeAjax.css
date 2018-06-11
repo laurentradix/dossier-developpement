@@ -1,0 +1,44 @@
+body{
+	background-color: #CCFFFF;
+
+}
+
+h1{
+	font-size: 3rem;
+	color: #ff6600;
+}
+
+
+.result{
+	border: 2px solid blue;
+	margin-bottom: 50px;
+	padding: 20px;
+}
+
+.radio{
+	margin: 0px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+label{
+	margin: 2rem;
+}
+.container{
+	border: 2px solid blue;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+
+button{
+	width: 100px;
+	margin:3rem;
+}
+.text{
+	color:blue;
+}
+
