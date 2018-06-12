@@ -6,5 +6,36 @@ include 'header.phtml';
 
 <a href="newArticle.php">Rédiger un article</a>
 
+<table>
+	<tr>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+	
+	<?php endforeach ?>
+</table>
+
+
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+<?php foreach ($articleList as $article): ?>
+		<h3><?= cleanText($article['title']) ?></h3>
+		<div>
+			<?= cleanText($article['content']) ?>
