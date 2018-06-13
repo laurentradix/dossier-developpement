@@ -1,8 +1,10 @@
 <?php
+include 'classes/shape.php';
 include 'classes/rectangle.php';
 include 'classes/circle.php';
 include 'classes/ellipse.php';
 include 'classes/square.php';
+include 'classes/triangle.php';
 
 
 $rect = new Rectangle(90,50);
@@ -26,6 +28,9 @@ $Square = new Rectangle(70,70);
 $Square->setPosition(120,200);
 $Square->setColor("orange");
 
+$Triangle = new triangle([190,210], [260,250], [160,300]);
+$Triangle->setColor("yellow");
+
 ?>
 
 <!DOCTYPE html>
@@ -35,15 +40,16 @@ $Square->setColor("orange");
 	<title>Dessiner des formes</title>
 </head>
 <body>
-	<h1>Je peint en svg</h1>
+	<h1>Je peins en svg</h1>
 
-	<svg style="border:2px solid purple;  width="500" height="400">
+	<svg class  style="border:2px solid purple;  width="500" height="400">
 		
 		<?=$rect->draw()?>
 		<?=$rect2->draw()?>
 		<?=$circle->draw()?>
 		<?=$Ellipse->draw()?>
 		<?=$Square->draw()?>
+		<?=$Triangle->draw()?>
 
  	</svg>
 	

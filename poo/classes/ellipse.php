@@ -1,40 +1,24 @@
 <?php
 
-class Ellipse{
+class Ellipse extends Shape{
 	
-	public $cx;
-	public $cy;
-	public $r;
-	public $ry;
-	public $color;
-	
-
-	public function __construct ($r,$ry){
+	public function __construct (){
+		
 		$this->cx=0;
 		$this->cy=0;
 		$this->rx=$r;
 		$this->ry=$ry;
-		$this->color='black';
-		
 	}
+	
 	public function draw(){
 	$svg = <<<TXT
 	
-	<ellipse cx="{$this->cx}" cy="{$this->cy}" rx="{$this->rx}" ry="{$this->ry}"
-	fill= "{$this->color}"/>
+	<ellipse cx="{$this->cx}" cy="{$this->cy}" rx="{$this->rx}" ry="{$this->ry}"/>
 
 TXT;
 		return $svg;
 	}
 	
-	function setPosition($cx,$cy){
-		$this->cx = $cx;
-		$this->cy = $cy;
-	}
-	
-	function setColor($color){
-		$this->color= $color;
-	}
 }
 
 

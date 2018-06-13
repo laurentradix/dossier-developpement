@@ -1,39 +1,28 @@
 <?php
-class Circle{
-	public $cx;
-	public $cy;
-	public $r;
-	public $color;
+
+class Circle extends Shape{
+	
+	public $cx=0;
+	public $cy=0;
+	public $r=0;
+	
 	
 
-	public function __construct ($r){
+	public function __construct (){
 		$this->cx=0;
 		$this->cy=0;
 		$this->r=$r;
-		$this->color='red';
 		
-	}
+}
+	
 	public function draw(){
 	$svg = <<<TXT
 	
-	<circle cx="{$this->cx}" cy="{$this->cy}" r="{$this->r}"
-	fill= "{$this->color}"/>
+	<circle cx="{$this->cx}" cy="{$this->cy}" r="{$this->r}"/>
 
 TXT;
 		return $svg;
 	}
-	
-	function setPosition($cx,$cy){
-		$this->cx = $cx;
-		$this->cy = $cy;
-	}
-	
-	function setColor($color){
-		$this->color= $color;
-	}
 }
-
-
-//  <svg height="100" width="100">
-//   <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-// </svg> 
+	
+	
