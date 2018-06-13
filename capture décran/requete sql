@@ -1,0 +1,241 @@
+/* La liste des avions (code et nom) triés par vendeur et par quantité en stock décroissants */
+
+SELECT productCode, productName
+FROM products
+WHERE productLine = 'Planes'
+ORDER BY productVendor DESC, quantityInStock DESC
+
+
+/* La liste des produits (code, nom, échelle et quantité) qui ont une échelle soit de 1:10, soit de 1:18 triés par quantité en stock décroissante */
+
+SELECT productCode, productName, productScale, quantityInStock
+FROM products
+WHERE
+	/*productScale LIKE "1:10" OR productScale = "1:18" OR productScale = "1:12" */
+    productScale IN ("1:10", "1:18");
+    
+    
+    
+/* liste des produits (tous les champs) productCode S18_1097 - S18_1367 - S18_1984 - S18_1342 triés par nom */
+
+/* La liste des produits (nom, vendeur et prix de vente) qui sont vendus au moins 132$ triés par nom du produit */
+
+/* La liste des produits (code, nom et prix d'achat) des produits achetés au moins 60$ au plus 90$ triés par prix d'achat */
+
+/* La liste des motos (nom, vendeur, quantité et marge) triés par marge décroissante */
+
+
+/* La liste des commandes (numéro, date de commande, date d'expédition, écart en jours entre les deux dates et statut) 
+qui sont en cours de traitement ou qui ont été expédiées et ont un écart de plus de 10j triés par écart décroissant puis par date de commande */
+
+
+/*La liste des produits (nom et valeur du stock à la vente) des années 1960 */
+
+SELECT productName, quantityInStock * MSRP AS 'valeur stock'
+FROM products
+WHERE productName LIKE "196%";
+
+
+/* Le prix moyen d'un produit vendu par chaque vendeur triés par prix moyen décroissant */
+
+
+SELECT productCode, productName, MSRP,productVendor
+FROM products
+GROUP BY productVendor;
+
+
+SELECT productVendor, AVG(MSRP), COUNT(productVendor) FROM products GROUP BY productVendor
+SELECT productLine, COUNT(productLine)AS"nombredeproduits" FROM products GROUP BY productLine
+
+* Le total du stock et le total de la valeur du stock à la vente de chaque ligne de produit pour les produits vendus plus de 100$ trié par total de la valeur du stock à la vente */
+
+| productLine      | totalStock | totalStockValue |
++------------------+------------+-----------------+
+| Ships            |       3854 |       429177.74 |
+| Trains           |       6450 |          650418 |
+| Planes           |      16063 |      2080480.94 |
+| Trucks and Buses |      25046 |      3053685.05 |
+| Vintage Cars     |      37791 |       4475953.2 |
+| Motorcycles      |      32548 |      4504922.91 |
+| Classic Cars     |     153118 |        21272817 |
++------------------+------------+-----------------+
+
+SELECT  productLine, SUM(quantityInStock) AS"totalStock", SUM(quantityInStock*MSRP) AS"totalStockValue"
+FROM products 
+WHERE MSRP >= 100
+GROUP BY productLine
+ORDER BY SUM(quantityInStock*MSRP)ASC
+
+
+
+/* La quantité du produit le plus en stock de chaque vendeur trié par vendeur */
+
++---------------------------+------------+
+| productVendor             | maxInStock |
++---------------------------+------------+
+| Autoart Studio Design     |       9354 |
+| Carousel DieCast Legends  |       8197 |
+| Classic Metal Creations   |       9042 |
+| Exoto Designs             |       8290 |
+| Gearbox Collectibles      |       9446 |
+| Highway 66 Mini Classics  |       7733 |
+| Min Lin Diecast           |       9772 |
+| Motor City Art Classics   |       9653 |
+| Red Start Diecast         |       8164 |
+| Second Gear Diecast       |       8820 |
+| Studio M Art Models       |       8635 |
+| Unimax Art Galleries      |       9997 |
+| Welly Diecast Productions |       9123 |
++---------------------------+------------+
+
+SELECT productVendor, MAX(quantityInStock) AS maxInStock FROM products GROUP BY productVendor ORDER BY productVendor
+
+
+
+
+/* Le prix de l'avion qui coûte le moins cher à l'achat */
++--------------------+
+| cheapestPricePlane |
++--------------------+
+|              29.34 |
++--------------------+
+
+SELECT MIN(buyPrice) AS"cheapestPricePlane" FROM products WHERE productline LIKE '%planes%'
+
+/* Le crédit des clients qui ont payé plus de 20000$ durant l'année 2004 trié par crédit décroissant */
++----------------+--------------------+
+| customerNumber | totalCredit        |
++----------------+--------------------+
+|            141 | 293765.50999999995 |
+|            124 | 231562.53000000003 |
+|            114 | 127155.95999999999 |
+|            298 |          108777.92 |
+|            166 | 105420.56999999999 |
+|            187 |            99984.4 |
+|            157 |           98509.25 |
+|            146 |           90593.25 |
+|            286 |           90545.37 |
+|            131 |           85347.32 |
+|            249 |           82223.23 |
+|            239 |           80375.24 |
+|            323 |           76721.95 |
+|            406 |           74246.12 |
+|            240 |           71783.75 |
+|            398 |           70965.55 |
+|            119 |  67426.01000000001 |
+|            181 |           67002.86 |
+|            260 |              66812 |
+|            412 |           66704.94 |
+|            177 | 62361.219999999994 |
+|            314 | 62253.850000000006 |
+|            259 |           61234.67 |
+|            151 |  60279.06999999999 |
+|            450 |           59551.38 |
+|            256 | 58876.409999999996 |
+|            204 |           55577.26 |
+|            458 |           55308.17 |
+|            227 |           53745.34 |
+|            145 |           53487.29 |
+|            172 | 53170.380000000005 |
+|            121 |           52514.46 |
+|            496 |              52166 |
+|            486 |           51893.45 |
+|            386 |           51619.02 |
+|            363 |           50799.69 |
+|            189 | 49898.270000000004 |
+
+
+/* La liste des employés (nom, prénom et fonction) et des bureaux (adresse et ville) dans lequel ils travaillent */
+
++-----------+-----------+----------------------+--------------------------+--------------+---------------+
+| lastName  | firstName | jobTitle             | addressLine1             | addressLine2 | city          |
++-----------+-----------+----------------------+--------------------------+--------------+---------------+
+| Murphy    | Diane     | President            | 100 Market Street        | Suite 300    | San Francisco |
+| Patterson | Mary      | VP Sales             | 100 Market Street        | Suite 300    | San Francisco |
+| Firrelli  | Jeff      | VP Marketing         | 100 Market Street        | Suite 300    | San Francisco |
+| Bow       | Anthony   | Sales Manager (NA)   | 100 Market Street        | Suite 300    | San Francisco |
+| Jennings  | Leslie    | Sales Rep            | 100 Market Street        | Suite 300    | San Francisco |
+| Thompson  | Leslie    | Sales Rep            | 100 Market Street        | Suite 300    | San Francisco |
+| Firrelli  | Julie     | Sales Rep            | 1550 Court Place         | Suite 102    | Boston        |
+| Patterson | Steve     | Sales Rep            | 1550 Court Place         | Suite 102    | Boston        |
+| Tseng     | Foon Yue  | Sales Rep            | 523 East 53rd Street     | apt. 5A      | NYC           |
+| Vanauf    | George    | Sales Rep            | 523 East 53rd Street     | apt. 5A      | NYC           |
+| Bondur    | Gerard    | Sale Manager (EMEA)  | 43 Rue Jouffroy D'abbans | NULL         | Paris         |
+| Bondur    | Loui      | Sales Rep            | 43 Rue Jouffroy D'abbans | NULL         | Paris         |
+| Hernandez | Gerard    | Sales Rep            | 43 Rue Jouffroy D'abbans | NULL         | Paris         |
+| Castillo  | Pamela    | Sales Rep            | 43 Rue Jouffroy D'abbans | NULL         | Paris         |
+| Gerard    | Martin    | Sales Rep            | 43 Rue Jouffroy D'abbans | NULL         | Paris         |
+| Nishi     | Mami      | Sales Rep            | 4-1 Kioicho              | NULL         | Tokyo         |
+| Kato      | Yoshimi   | Sales Rep            | 4-1 Kioicho              | NULL         | Tokyo         |
+| Patterson | William   | Sales Manager (APAC) | 5-11 Wentworth Avenue    | Floor #2     | Sydney        |
+| Fixter    | Andy      | Sales Rep            | 5-11 Wentworth Avenue    | Floor #2     | Sydney        |
+| Marsh     | Peter     | Sales Rep            | 5-11 Wentworth Avenue    | Floor #2     | Sydney        |
+| King      | Tom       | Sales Rep            | 5-11 Wentworth Avenue    | Floor #2     | Sydney        |
+| Bott      | Larry     | Sales Rep            | 25 Old Broad Street      | Level 7      | London        |
+| Jones     | Barry     | Sales Rep            | 25 Old Broad Street      | Level 7      | London        |
++-----------+-----------+----------------------+--------------------------+--------------+---------------+
+
+SELECT lastName, firstname, jobTitle, addressLine
+FROM employees
+JOIN offices ON offices.officeCode = employees.officeCode
+
+
+/* La liste des clients français ou américains 
+	(nom du client, nom, prénom du contact et pays) 
+	et de leur commercial dédié (nom et prénom) 
+    triés par nom et prénom du contact */
+    
+
+
++------------------------------+-----------------+------------------+---------+-----------+-----------+
+| customerName                 | contactLastName | contactFirstName | country | lastName  | firstName |
++------------------------------+-----------------+------------------+---------+-----------+-----------+
+| Online Mini Collectables     | Barajas         | Miguel           | USA     | Firrelli  | Julie     |
+| FunGiftIdeas.com             | Benitez         | Violeta          | USA     | Patterson | Steve     |
+| La Corne D'abondance, Co.    | Bertrand        | Marie            | France  | Bondur    | Loui      |
+| Corporate Gift Ideas Co.     | Brown           | Julie            | USA     | Jennings  | Leslie    |
+| Tekni Collectables Inc.      | Brown           | William          | USA     | Vanauf    | George    |
+| Classic Gift Ideas, Inc      | Cervantes       | Francisca        | USA     | Firrelli  | Julie     |
+| Men 'R' US Retailers, Ltd.   | Chandler        | Brian            | USA     | Thompson  | Leslie    |
+| Microscale Inc.              | Choi            | Yu               | USA     | Tseng     | Foon Yue  |
+| Mini Caravy                  | Citeaux         | Frédérique       | France  | Hernandez | Gerard    |
+| Lyon Souveniers              | Da Silva        | Daniel           | France  | Bondur    | Loui      |
+| American Souvenirs Inc       | Franco          | Keith            | USA     | Tseng     | Foon Yue  |
+| Diecast Collectables         | Franco          | Valarie          | USA     | Firrelli  | Julie     |
+| Vitachrome Inc.              | Frick           | Michael          | USA     | Tseng     | Foon Yue  |
+| Mini Classics                | Frick           | Steve            | USA     | Vanauf    | George    |
+| The Sharp Gifts Warehouse    | Frick           | Sue              | USA     | Jennings  | Leslie    |
+| Technics Stores Inc.         | Hashimoto       | Juri             | USA     | Jennings  | Leslie    |
+| Reims Collectables           | Henriot         | Paul             | France  | Bondur    | Loui      |
+| Classic Legends Inc.         | Hernandez       | Maria            | USA     | Tseng     | Foon Yue  |
+| Marta's Replicas Co.         | Hernandez       | Marta            | USA     | Patterson | Steve     |
+| Mini Creations Ltd.          | Huang           | Wing             | USA     | Firrelli  | Julie     |
+| Signal Gift Stores           | King            | Jean             | USA     | Thompson  | Leslie    |
+| Gift Depot Inc.              | King            | Julie            | USA     | Vanauf    | George    |
+| La Rochelle Gifts            | Labrune         | Janine           | France  | Hernandez | Gerard    |
+| Marseille Mini Autos         | Lebihan         | Laurence         | France  | Bondur    | Loui      |
+| Land of Toys Inc.            | Lee             | Kwai             | USA     | Vanauf    | George    |
+| Diecast Classics Inc.        | Leong           | Kelvin           | USA     | Patterson | Steve     |
+| Gift Ideas Corp.             | Lewis           | Dan              | USA     | Vanauf    | George    |
+| Mini Wheels Co.              | Murphy          | Julie            | USA     | Jennings  | Leslie    |
+| Super Scale Inc.             | Murphy          | Leslie           | USA     | Tseng     | Foon Yue  |
+| Collectables For Less Inc.   | Nelson          | Allen            | USA     | Firrelli  | Julie     |
+| Mini Gifts Distributors Ltd. | Nelson          | Susan            | USA     | Jennings  | Leslie    |
+| Auto Canal+ Petit            | Perrier         | Dominique        | France  | Bondur    | Loui      |
+| Daedalus Designs Imports     | Rancé           | Martine          | France  | Hernandez | Gerard    |
+| Alpha Cognac                 | Roulet          | Annette          | France  | Hernandez | Gerard    |
+| Motor Mint Distributors Inc. | Salazar         | Rosa             | USA     | Vanauf    | George    |
+| Saveley & Henriot, Co.       | Saveley         | Mary             | France  | Bondur    | Loui      |
+| Atelier graphique            | Schmitt         | Carine           | France  | Hernandez | Gerard    |
+| Auto-Moto Classics Inc.      | Taylor          | Leslie           | USA     | Patterson | Steve     |
+| Signal Collectibles Ltd.     | Taylor          | Sue              | USA     | Jennings  | Leslie    |
+| West Coast Collectables Co.  | Thompson        | Steve            | USA     | Thompson  | Leslie    |
+| Collectable Mini Designs Co. | Thompson        | Valarie          | USA     | Thompson  | Leslie    |
+| Auto Associés & Cie.         | Tonini          | Daniel           | France  | Hernandez | Gerard    |
+| Cambridge Collectables Co.   | Tseng           | Jerry            | USA     | Firrelli  | Julie     |
+| Gifts4AllAges.com            | Yoshido         | Juri             | USA     | Patterson | Steve     |
+| Online Diecast Creations Co. | Young           | Dorothy          | USA     | Patterson | Steve     |
+| Muscle Machine Inc           | Young           | Jeff             | USA     | Tseng     | Foon Yue  |
+| Toys4GrownUps.com            | Young           | Julie            | USA     | Thompson  | Leslie    |
+| Boards & Toys Co.            | Young           | Mary             | USA     | Thompson  | Leslie    |
++------------------------------+-----------------+------------------+---------+-----------+-----------+
