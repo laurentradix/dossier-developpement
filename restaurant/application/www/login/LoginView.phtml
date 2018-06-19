@@ -1,0 +1,16 @@
+<h2>Se connecter avec un compte utilisateur</h2>
+
+<?php if (isset($errorMessage)):?>
+	<div>
+		<?=$errorMessage?>
+	</div>
+<?php endif; ?>
+
+<form method="post" action="">
+	
+	<label >Email <input type="text" name="email"></label>
+	<label >Mot de Passe <input type="text" name="password"></label>
+	<button>Connexion</button>
+	<button>Annuler</button>
+	
+</form>

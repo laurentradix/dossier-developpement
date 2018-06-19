@@ -3,8 +3,16 @@
 class HomeController
 {
     public function httpGetMethod(Http $http, array $queryFields)
-    {
-    	/*
+    {   
+
+        $productModel = new ProductModel();
+
+        $productList = $productModel->getAllProducts();
+
+        return ['productList' => $productList];
+    	
+
+        /*
     	 * Méthode appelée en cas de requête HTTP GET
     	 *
     	 * L'argument $http est un objet permettant de faire des redirections etc.

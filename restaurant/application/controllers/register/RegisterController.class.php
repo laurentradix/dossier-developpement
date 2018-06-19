@@ -1,6 +1,6 @@
 <?php
 
-class TestController
+class RegisterController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
@@ -10,13 +10,17 @@ class TestController
     	 * L'argument $http est un objet permettant de faire des redirections etc.
     	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
     	 */
-        $productModel= new productModel();
-        $producList = $productModel->getallProducts();
-        return ['name'=>'toto', "products"=>$producList];
     }
 
     public function httpPostMethod(Http $http, array $formFields)
-    {
+    {   
+        var_dump($formFields);
+        
+        $userModel = new userModel();
+        
+        $userModel->createUser($formFields);
+        
+        $http->redirectTo('login');
     	/*
     	 * Méthode appelée en cas de requête HTTP POST
     	 *
