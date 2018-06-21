@@ -2,30 +2,17 @@
 
 class RegisterController
 {
-    public function httpGetMethod(Http $http, array $queryFields)
-    {
-    	/*
-    	 * Méthode appelée en cas de requête HTTP GET
-    	 *
-    	 * L'argument $http est un objet permettant de faire des redirections etc.
-    	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
-    	 */
-    }
-
-    public function httpPostMethod(Http $http, array $formFields)
-    {   
-        var_dump($formFields);
+    
+        public function httpPostMethod(Http $http, array $formFields)
+            {   
         
-        $userModel = new userModel();
-        
-        $userModel->createUser($formFields);
-        
-        $http->redirectTo('login');
-    	/*
-    	 * Méthode appelée en cas de requête HTTP POST
-    	 *
-    	 * L'argument $http est un objet permettant de faire des redirections etc.
-    	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
-    	 */
-    }
+                $userModel = new UserModel();
+                
+                
+                $userModel->createUser($formFields);
+               
+              
+                $http->redirectTo('login');
+    	
+            }
 }

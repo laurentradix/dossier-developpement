@@ -34,12 +34,26 @@
 <!-- Interface utilisateur -->
 <nav class="user-interface">
     <ul class="link-list">
-        <li>
-            <a class="button button-primary" href="<?= $requestUrl ?>/register">Créer un compte</a>
-        </li>
-        <li class="layout-right">
-            <a class="button button-primary" href="<?= $requestUrl ?>/login">Connexion</a>
-        </li>
+
+        <?php if ( empty($_SESSION['user_id'])): ?>
+             <li>
+                <a class="button button-primary" href="<?= $requestUrl ?>/register">Créer un compte</a>
+            </li>
+            <li class="layout-right">
+                <a class="button button-primary" href="<?= $requestUrl ?>/login">Connexion</a>
+            </li>
+        <?php else: ?> 
+            
+            <?php
+                $user = UserModel::getUserById($_SESSION['user_id']);
+            ?>
+
+            Bonjour, <?= $user['firstname'] ?>
+            <a href="<?= $requestUrl ?>/logout">Se déconnecter</a>
+            <a href="<?= $requestUrl ?>/order">Commander</a>
+        
+        <?php endif ?>
+       
        
     </ul>
 </nav>
@@ -58,6 +72,10 @@
     </ul>
     <small>Réalisé avec <i class="fa fa-heart"></i>&nbsp; par les élèves de la 3W Academy</small>
 </footer>
+
+<?php
+// Tools::pre($_SESSION);
+?>
 
 <!-- Code principal JavaScript de l'application -->
 <script src="<?= $wwwUrl ?>/js/main.js"></script>

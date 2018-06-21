@@ -4,21 +4,47 @@ class LoginController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {
-    	/*
-    	 * Méthode appelée en cas de requête HTTP GET
-    	 *
-    	 * L'argument $http est un objet permettant de faire des redirections etc.
-    	 * L'argument $queryFields contient l'équivalent de $_GET en PHP natif.
-    	 */
+    	
+
     }
 
+   
+
+
     public function httpPostMethod(Http $http, array $formFields)
-    {
-    	/*
-    	 * Méthode appelée en cas de requête HTTP POST
-    	 *
-    	 * L'argument $http est un objet permettant de faire des redirections etc.
-    	 * L'argument $formFields contient l'équivalent de $_POST en PHP natif.
-    	 */
+    {   
+        
+
+        if (empty($formFields['email'])) {
+            throw new Exception("email empty");
+        }
+            
+        if (empty($formFields["password"])) {
+
+            throw new Exception("password empty");
+            
+        } 
+
+        
+        $email=$formFields['email'];
+        $password=$formFields['password'];
+
+        
+        $user =UserModel::getUserByemail($email);
+
+        
+        if (empty($user)) {
+            return ['errorMessage'=>"Email inconnu"];
+        }
+        
+        if($password!= $user['password']){
+            return['errorMessage'=>"mot de passe incorrect"];
+        }
+
+        $userSession = new UserSession();
+        $userSession->connect($user);
+
+        $http->redirectTo('');
+
     }
 }
