@@ -1,23 +1,31 @@
 
 <h2>Passer une Commande</h2>
 
-<div class="box-add-article">
+<div class="add">
     <label>
         Produits
 
         <select>
             <?php foreach ($productList as $product):?>
+                
                 <option value="<?=$product['id'] ?>"><?=$product["name"]?></option>
+            
             <?php endforeach ?>
         </select>
     </label>
-    <div class ="product-info">
-       
-        
-    </div>
-     <div class ="box-cart">
-        
+    
+    <div class ="product-info"></div>
+    
+    <div class="quantity">
+        <label>Quantité<input type="number" name="quantity"></label>
+        <button type="button" class="btn-add">Ajouter</button>
     </div>
 
-    <script src="<?= $wwwUrl ?>/js/order.js"></script>
+
+
+     <div class="box-cart">
+        
+</div>
+
+<script src="<?= $wwwUrl ?>/js/order.js"></script>
 
