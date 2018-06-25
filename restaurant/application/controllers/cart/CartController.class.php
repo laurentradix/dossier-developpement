@@ -3,6 +3,8 @@
 class CartController
 {
    
+    
+
     public function httpGetMethod(Http $http, array $formFields)
     {
     	
@@ -11,17 +13,20 @@ class CartController
     	return['productList'=>$productList,'_raw_template'=> true ];
  	}
 
- 	 public function httpPostMethod(Http $http, array $formFields)
+ 	
+
+
+     public function httpPostMethod(Http $http, array $formFields)
     {
 
     	if(isset($formFields['delete'])){
 
     		$productId = $formFields['id'];
-    		Cart::deleteOneproduct($productId);
+    		Cart::remove($productId);
 
-    	}else{
+    	} else{
 
-    		$quantity = $formFields['quantity]'];
+    		$quantity = $formFields['quantity'];
     		$productId =$formFields['id'];
 
     		Cart::add($productId, $quantity);

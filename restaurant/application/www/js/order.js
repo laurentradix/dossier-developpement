@@ -48,15 +48,19 @@ $('.btn-add').on('click', function(){
 var url = getRequestUrl()+'/cart';
 
 $.get(url, function (html) {
+	
 	$('.box-cart').html(html);
 });
 
 
 
-$(document).on('click',"button-delete",function(){
+$(document).on('click',".button-delete",function(){
+	console.log("button-delete");
 
 		var productId =$(this).attr('data-id')
-		var url = getRequestUrl()+'/cart';
+		console.log(productId);
+		
+		var url = getRequestUrl() + '/cart';
 		
 
 		var params = {};
@@ -65,8 +69,9 @@ $(document).on('click',"button-delete",function(){
 
 		params.delete =1;
 
-		$.post(url, function (html) {
+		$.post(url,params, function (html) {
 		$('.box-cart').html(html);
 
  	 });
+
 });

@@ -11,13 +11,18 @@ class Cart{
 		}
 	}
 
-	static function add($productId,$quantity){
+	static function add($productId, $quantity){
 
-		$cart=$_SESSION['cart'];
+		$cart = $_SESSION['cart'];
 
-		$cart[$productId] = ['id'=>$productId,"quantity"=> $quantity];
-		
-		$_SESSION['cart']=$cart;
+		if (isset($cart[$productId])){
+
+			$cart[$productId]['quantity'] += $quantity;
+		}else{
+			$cart [$productId]= ['id' => $productId, 'quantity' => $quantity];
+		}
+
+		$_SESSION['cart'] = $cart;
 	}
 
 	static function remove($productId) {

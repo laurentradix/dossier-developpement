@@ -14,14 +14,11 @@
 		<td><?= Tools::getPrettyPrice(Tools::getPriceTTC($product['priceHT']*$product['quantity']))?></td>	
 		
 		<td>
-			<button class="button-delete" type="button" data-id ="<? $product['id']?>">Supprimer>
-
-			</button>
+			<button class="button-delete" type="button" data-id ="<?= $product['id']?>">Supprimer</button>
 		</td>
 	
-
 	</tr>
-
+	
 <?php endforeach ?>
 
 </table>
