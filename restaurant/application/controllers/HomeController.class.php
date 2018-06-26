@@ -4,11 +4,8 @@ class HomeController
 {
     public function httpGetMethod(Http $http, array $queryFields)
     {   
+		$productList = ProductModel::getAllProducts();
 
-       
-
-        $productList = ProductModel::getAllProducts();
-
-        return ['products' => $productList];
+        return ['productList' => $productList];
     }
 }

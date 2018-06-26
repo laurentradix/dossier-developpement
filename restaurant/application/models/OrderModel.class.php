@@ -7,42 +7,43 @@ class OrderModel{
 
 	 	if(empty($products)){
 
-	 		throw new Exception("product empty");
+	 		throw new Exception("Products empty");
 	 	}
+
+	 	
+	 	$sql =
+	 			
+	 	"INSERT INTO `order` (user_id, status, created_at,)
+			
+				VALUES		(NOW(),?, "pending")" 
+	
+	
 		
 		$db = new Database();
 
-			$orderId = $db->execute($sql,[$userId]);
+			$orderId = $db->executeSql($sql,[$userId]);
 
 			
-			$sql = "INSERT INTO order
-							
-							(user_id, status, created_at,)
-			
-				VALUES		(:user_id, :status, :created_at, NOW())";
-	}
-		
-
-		$db->execute($sql, $userId);
-
-		foreach ($products as $product) {
+			foreach ($products as $product) {
 					
 			
-				$sql ="INSERT INTO orderline
+				$sql ="
+
+					INSERT INTO orderline
 								
-								(order_id, product_id, priceHT ,quantity)
+					(order_id, product_id, priceHT ,quantity)
 
-					VALUES		(:order_id, :product_id, :priceHT, :quantity)
-									";
+					VALUES(:order_id, :product_id, :priceHT, :quantity)
+
+					";
 					
-				
-				$data[];
-				$data['order_id'];
-				$data['product_id'];
-				$data['priceHT'];
-				$data['quantity']
+					$data = [];
+					$data['order_id'] = $orderId;
+					$data['product_id'] = $product["id"];
+					$data['priceHT'] = $product["priceHT"] ;
+					$data['quantity'] = $product["quantity"];
 
-				$db->execute($sql,$data);
+					$db->execute($sql,$data);
 
 		}
 		return $orderId;
