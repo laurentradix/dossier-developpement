@@ -1,0 +1,8 @@
+{
+    "require": {
+        "twig/twig": "^2.4",
+        "silex/silex": "^2.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "nesbot/carbon": "^1.31"
+    }
+}
