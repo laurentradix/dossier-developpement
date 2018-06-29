@@ -32,6 +32,7 @@ class ComposerStaticInit1a71e75ee68fb292e48af9108832d6d0
             'Symfony\\Component\\HttpFoundation\\' => 33,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\Debug\\' => 24,
+            'Symfony\\Bridge\\Twig\\' => 20,
             'Silex\\' => 6,
         ),
         'P' => 
@@ -39,6 +40,10 @@ class ComposerStaticInit1a71e75ee68fb292e48af9108832d6d0
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+        ),
+        'M' => 
+        array (
+            'Monprojet\\' => 10,
         ),
         'G' => 
         array (
@@ -89,6 +94,10 @@ class ComposerStaticInit1a71e75ee68fb292e48af9108832d6d0
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
+        'Symfony\\Bridge\\Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/twig-bridge',
+        ),
         'Silex\\' => 
         array (
             0 => __DIR__ . '/..' . '/silex/silex/src/Silex',
@@ -104,6 +113,10 @@ class ComposerStaticInit1a71e75ee68fb292e48af9108832d6d0
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Monprojet\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Monprojet',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

@@ -19,160 +19,100 @@
 // 	return {x: this.x, y: this.y};
 // }
 
-// var fafnir = new Hero("fafnir", 20);
-// var aragorn = new Hero("aragorn", 25);
-// var legolas = new Hero("legolas", 25);
+// var dragonBallZ = new Hero("dragonBallZ", 20);
+// var albator = new Hero("albator", 25);
+// var superman = new Hero("superman", 25);
 
-// fafnir.strike();
-// aragorn.strike();
-// aragorn.move();
+// dragonBallZ.strike();
+// dragonBallZ.strike();
+// superman.move();
 
 // console.log(fafnir);
 
-// var canvas = document.querySelector("#canvas");
-// var dessin = canvas.getContext('2d');
+var canvas = document.querySelector("#canvas");
+var dessin = canvas.getContext('2d');
 
-// dessin.fillRect(fafnir.x,fafnir.y,20,20);
-// dessin.fillRect(aragorn.x,aragorn.y,60,60);
+// dessin.fillRect(dragonBallZ.x,dragonBallZ.y,20,20);
+// dessin.fillRect(superman.x,superman.y,60,60);
 
 
-$( document ).ready(function() {
-        var canvasDiv = document.getElementById('canvasDiv');
-        var canvas = document.createElement('canvas');
-        canvas.setAttribute('width', "500");
-        canvas.setAttribute('height', "200");
-        canvas.setAttribute('id', 'canvas');
-        canvasDiv.appendChild(canvas);
-        if(typeof G_vmlCanvasManager != 'undefined') {
-            canvas = G_vmlCanvasManager.initElement(canvas);
-        }
-        context = canvas.getContext("2d");
- 
-        //
-        $('#canvas').mousedown(function(e){
-            var mouseX = e.pageX - this.offsetLeft;
-            var mouseY = e.pageY - this.offsetTop;
-             
-            paint = true;
-            addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-            redraw();
-        });
- 
-        $('#canvas').mousemove(function(e){
-            if(paint){
-                addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-                redraw();
-            }
-        });      
- 
-        $('#canvas').mouseup(function(e){
-            paint = false;
-             
-        });
- 
-        $('#canvas').mouseleave(function(e){
-            paint = false;
-        });
- 
-        var clickX = new Array();
-        var clickY = new Array();
-        var clickDrag = new Array();
-        var paint;
- 
-        function addClick(x, y, dragging)
-        {
-            clickX.push(x);
-            clickY.push(y);
-            clickDrag.push(dragging);
-        }
- 
-        function redraw(){
-            context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-             
-            context.strokeStyle = "#333";
-            context.lineJoin = "round";
-            context.lineWidth = 8;
-             
-            for(var i=0; i < clickX.length; i++) {       
-                context.beginPath();
-                if(clickDrag[i] && i){
-                    context.moveTo(clickX[i-1], clickY[i-1]);
-                }else{
-                    context.moveTo(clickX[i]-1, clickY[i]);
-                }
-                context.lineTo(clickX[i], clickY[i]);
-                context.closePath();
-                context.stroke();
-            }
-        }
+// dragonBallZ.draw();
+// superman.draw();
+
+var state ={
+	drawing: false,
+	currrentLocation:null
+};
+
+
+
+var x1, y1;
+
+function onMouseMove(event) {
+	var x2 = event.clientX;
+	var y2 = event.clientY;
+
+	dessin.beginPath();
+	dessin.moveTo(x1, y1);
+	dessin.lineTo(x2, y2);
+	dessin.stroke();
+
+	x1 = x2;
+	y1 = y2;
+}
+
+canvas.addEventListener('mousedown',function startDrawing(event){
+
+	// console.log('startDrawing');
+
+	x1 = event.clientX;
+	y1 = event.clientY;
+	
+	canvas.addEventListener('mousemove', onMouseMove);
+
+	canvas.addEventListener('mouseup', function () {
+		canvas.removeEventListener('mousemove', onMouseMove)
+
+	});
+
 });
-$( document ).ready(function() {
-        var canvasDiv = document.getElementById('canvasDiv');
-        var canvas = document.createElement('canvas');
-        canvas.setAttribute('width', "500");
-        canvas.setAttribute('height', "200");
-        canvas.setAttribute('id', 'canvas');
-        canvasDiv.appendChild(canvas);
-        if(typeof G_vmlCanvasManager != 'undefined') {
-            canvas = G_vmlCanvasManager.initElement(canvas);
-        }
-        context = canvas.getContext("2d");
- 
-        //
-        $('#canvas').mousedown(function(e){
-            var mouseX = e.pageX - this.offsetLeft;
-            var mouseY = e.pageY - this.offsetTop;
-             
-            paint = true;
-            addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-            redraw();
-        });
- 
-        $('#canvas').mousemove(function(e){
-            if(paint){
-                addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-                redraw();
-            }
-        });      
- 
-        $('#canvas').mouseup(function(e){
-            paint = false;
-             
-        });
- 
-        $('#canvas').mouseleave(function(e){
-            paint = false;
-        });
- 
-        var clickX = new Array();
-        var clickY = new Array();
-        var clickDrag = new Array();
-        var paint;
- 
-        function addClick(x, y, dragging)
-        {
-            clickX.push(x);
-            clickY.push(y);
-            clickDrag.push(dragging);
-        }
- 
-        function redraw(){
-            context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-             
-            context.strokeStyle = "#333";
-            context.lineJoin = "round";
-            context.lineWidth = 8;
-             
-            for(var i=0; i < clickX.length; i++) {       
-                context.beginPath();
-                if(clickDrag[i] && i){
-                    context.moveTo(clickX[i-1], clickY[i-1]);
-                }else{
-                    context.moveTo(clickX[i]-1, clickY[i]);
-                }
-                context.lineTo(clickX[i], clickY[i]);
-                context.closePath();
-                context.stroke();
-            }
-        }
+	
+
+	
+	var rect  = canvas.getBoundingClientRect();
+	
+
+	var positionMouse = {
+
+	x: x1 - rect.left,
+	y: y1 - rect.top,
+
+}
+ 
+ x=0;
+
+ setInterval(
+ 	function(){
+ 		x++
+ 		dessin.clearRect(0,0,300,300);
+ 		dessin.fillRect(x,100,50,20);
+ 		dessin.fillStyle="green";
+ 		dessin.clearRect(0,0,300,300);
+ 		dessin.fillRect(x,10,80,20);
+ 		dessin.fillStyle="purple";
+ 	}
+ ,25);
+
+document.addEventListener('keydown',function(event){
+
+	var keyCode = event.keyCode;
+	
+	// console.log(event);
+
+	if (keyCode == 40){
+
+		x=-5}
 });
+
+
+
